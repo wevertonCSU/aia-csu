@@ -1,0 +1,335 @@
+html{
+    font-family: 'Montserrat', sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    background-color: #4D60FE;
+    overflow: hidden;
+    position: relative;
+}
+input {
+    outline:none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+::placeholder {
+   color: #fff;
+   opacity: 1; /* Firefox */
+   font-weight: 400;
+}
+  
+::-ms-input-placeholder { /* Edge 12 -18 */
+  color: #fff;
+  font-weight: 400;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: transform 1s ease;
+    z-index: 10; 
+}
+
+.logo-container img {
+    max-width: 150px;
+}
+
+#bgVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; 
+}
+
+.text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-weight: 400;
+    color: white;
+    font-size: 20px;
+    visibility: hidden; 
+    z-index: 1; 
+}
+
+.text-container.fadeIn {
+    visibility: visible; 
+    transition: visibility 0s 1s; 
+}
+.text-container.loading {
+    color: #ffffff; 
+    font-style: italic; 
+    animation: blinker 1.5s linear infinite;
+}
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    visibility: hidden; /* Esconde o rodapé inicialmente */
+    z-index: 1; /* Fica acima do fundo, mas abaixo do logo */
+}
+
+.footer.fadeIn {
+    visibility: visible; /* Mostra o rodapé após a animação do logo */
+    transition: visibility 0s 1s; /* Sincroniza a visibilidade com a animação */
+}
+
+.footer input {
+    background-color: transparent;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    color: white;
+    width: 500px;
+    margin-right: 10px;
+    font-weight: 400;
+    border: 0;
+    border-bottom: 1px solid #ffffff38;
+    font-size: 15px;
+}
+
+.footer button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .footer input {
+        width: 50%;
+    }    
+    .logo-container {
+        height: 75vh;
+    }
+    .text-container {
+        top: 65%;
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .footer input {
+        width: 50%;
+    }    
+    .logo-container {
+        height: 75vh;
+    }
+    .text-container {
+        top: 70%;
+        font-size: 14px;
+        max-height: 500px;
+        overflow: auto;
+    }
+}
+
+
+#micButton {
+    font-size: 24px;
+    color: #fff; 
+}
+
+#micButton.recording {
+    color: rgb(243, 45, 104); 
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    font-family: 'Montserrat', sans-serif;
+}
+
+.modal-content {
+    background-color: rgba(250, 250, 250, 0.85); 
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 400px; 
+    border-radius: 5px; 
+}
+
+.modal  fieldset{
+    border-radius:8px;
+    padding: 20px;
+}
+
+.modal fieldset legend{
+    color:#4e545f;
+    font-size: 14px;
+}
+.titleModal
+{
+    color:#4e545f;
+}
+
+.close-button {
+    color: #4e545f;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos do container do switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px; /* Reduzindo a largura */
+    height: 20px; /* Reduzindo a altura */
+    margin-right: 10px;
+  }
+  
+  /* Oculta o checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Estilos do slider (barra deslizante) */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px; /* Arredonda os cantos */
+  }
+  
+  /* A "bolinha" que se move dentro do slider */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px; /* Reduzindo a bolinha */
+    width: 14px; /* Reduzindo a bolinha */
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%; /* Arredonda a bolinha */
+  }
+  
+  /* Quando o checkbox está marcado (checked) */
+  input:checked + .slider {
+    background-color: #4D60FE;
+  }
+  
+  /* Move a bolinha para a direita quando ativado */
+  input:checked + .slider:before {
+    transform: translateX(20px); /* Ajustado para o novo tamanho */
+  }
+  
+  /* Estilo opcional: slider redondo */
+  .slider.round {
+    border-radius: 20px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  /* Estilo para o grupo de switches */
+  .toggle-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  /* Estilo para o item que contém cada switch e rótulo */
+  .toggle-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Estilo do texto ao lado do switch */
+  .toggle-label {
+    font-size: 14px; /* Tamanho menor para o texto */
+    color: #333;
+  }
+  
+  /* Dropdown com bordas arredondadas */
+.rounded-dropdown {
+    padding: 10px;
+    border: 2px solid #4D60FE; /* Cor da borda */
+    border-radius: 8px; /* Borda arredondada */
+    background-color: #ffffff31; /* Cor de fundo */
+    color: #333; /* Cor do texto */
+    font-size: 14px;
+    outline: none;
+    width: 200px; /* Largura do dropdown */
+    transition: border-color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Estilo quando o dropdown estiver em foco */
+  .rounded-dropdown:focus {
+    border-color: #4D60FE;
+  }
+  
+  /* Botão de "Ouvir Voz" */
+  .play-button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #4D60FE; /* Cor do botão */
+    border: none;
+    color: white; /* Cor do texto */
+    border-radius: 8px; /* Borda arredondada */
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Botão de "Ouvir Voz" quando o mouse estiver sobre ele */
+  .play-button:hover {
+    background-color: #616fe7;
+  }
+  
+  /* Estilo para o container do dropdown e botão */
+  .audio-controls {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+
+  
